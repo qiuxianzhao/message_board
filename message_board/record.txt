@@ -1,0 +1,71 @@
+文件上传 [ 表单处理程序 ]
+
+
+表单分两部分:
+  一、 HTML的web表单页面[HTML阶段学习的表单元素]
+  二、 由form标签的action属性指向的表单处理程序的页面
+
+
+在表单页面制作时，如果遇到 多选值的情况下，需要使用 [] 来声明数组，否则服务器那边会出现值覆盖的情况
+
+    爱好： <label><input type="checkbox" name="lve[]" value="ball">打球</label>
+           <label><input type="checkbox" name="lve[]" value="swim">游泳</label>
+           <label><input type="checkbox" name="lve[]" value="read">看书</label>
+           <label><input type="checkbox" name="lve[]" value="shopping">购物</label><br><br>
+    喜欢的城市：
+           <select name="city[]">
+             <option value="gz">广州</option>
+             <option value="sz">深圳</option>
+             <option value="fs">佛山</option>
+             <option value="bj">北京</option>
+           </select><br><br>
+
+################################################################
+在用户上传文件时，注意，表单的form元素必须有声明两个属性的值。
+  method="post"                   //指定 method必须是 post方式
+  enctype="multipart/form-data"   //指定 enctype的值必须是 multipart/form-data
+
+在服务器端，我们使用 $_FILES来接收用户发送的上传文件信息，如下：
+Array(
+  [pic] => Array(                                # 前端web表单的input框的name属性值
+      [name] => 1.jpg                            # 上传文件名称
+      [type] => image/jpeg                       # 上传文件的MIME类型
+      [tmp_name] => C:\Windows\Temp\phpEAFD.tmp  # 上传文件的临时存放目录
+      [error] => 0                               # 上传文件的错误类型
+      [size] => 18009                            # 上传文件的文件大小
+  )
+)
+
+注意，默认情况下，前端上传过来的文件，会自动存放在的系统的临时文件存放目录
+  windows系统    C:/Windows/Temp/目录中
+ 
+################################################################
+上传文件如果在脚本结束之前，不进行处理，则PHP会在脚本运行完成以后就会消失掉。
+我们可以在脚本结束之前，使用 php的 上传文件处理函数 或者 copy等操作操作函数来
+完成对上传文件的处理工作。
+
+1. 使用copy等文件操作函数对上传文件进行处理
+    
+    //把上传文件从临时存放目录中复制到指定目录中，并指定名称
+    if( $_FILES['pic']['name'] ){
+      copy($_FILES['pic']['tmp_name'],'./'.$_FILES['pic']['name']);
+    }
+
+2. 使用文件上传处理函数进行处理
+   
+    move_uploaded_file
+
+################################################################
+文件上传处理的相关服务器配置
+
+ file_uploads         #默认情况，服务器开启文件上传功能，如果要关闭，把值设置成Off
+ upload_max_filesize  #允许上传文件大小的最大值，默认为2M，此指令必须小于post_max_size
+ max_file_uploads     #允许同时上传文件的数量，默认为同时能上传20个
+ upload_tmp_dir       #上传文件的临时存放目录，默认为系统的临时文件存放目录
+ 
+ post_max_size        #允许post方式提交数据大小的最大值，默认是8M。
+
+ memory_limit         #单个脚本程序可以使用的最大内容容量[默认 128M]
+
+ max_execution_time   #PHP脚本可以执行的最大时间，以秒为单位，默认是30
+                      如果设置为0，则表示没有限制时间。

@@ -1,0 +1,119 @@
+@charset "utf-8";
+ol,p,ul,li{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.message-form{
+	border-radius: 5px;
+	margin: 0 auto;
+	width: 460px;
+	height: 450px;
+	background: url('images/bg.png') no-repeat;
+	padding-top: 120px;
+}
+.text,input,textarea{
+	margin-left: 30px;
+}
+.text{
+	font-family: 'Arial';
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #666666;
+	margin-bottom: 10px;
+}
+input{
+	border: 1px solid #c8c8c8;
+	font-size: 13px;
+	color: #333333;
+	line-height: 13px;
+	padding: 8px;
+	margin-bottom: 20px;
+	width: 28em;
+	text-indent: 1em;
+}
+input[name='username']{
+	background: url('images/user.png') no-repeat 3px 8px;
+}
+input[name='password']{
+	background: url('images/lock.png') no-repeat 3px 8px;
+}
+input[name='email']{
+	background: url('images/mail.png') no-repeat 3px 8px;
+}
+textarea{
+	border: 1px solid #c8c8c8;
+	font-size: 13px;
+	color: #333333;
+	line-height: 17px;
+	padding: 8px;
+	margin-bottom: 20px;
+	width: 28em;
+	height: 5em;
+	background: url('images/comment.png') no-repeat 3px 8px;
+	text-indent: 1em;
+}
+input[type="submit"]{
+	height: 44px;
+	width: 114px;
+	cursor: pointer;
+	border: none;
+	background-image: url('images/button.png');
+}
+input[type="submit"]:hover{
+	background-position: 0 44px;
+}
+/** message list **/
+.message-list{
+		border-bottom: 1px solid #DDDDDD;
+		margin: 10px auto;
+		overflow: hidden;
+		padding: 10px 0;
+		width: 666px;
+}
+.commentlist .depth-1{
+	margin: 10px 0 10px 0;
+}
+.commentlist .comment{
+	border-top: 1px solid #ddd;
+}
+.commentlist li{
+	position: relative;
+}
+.comment-body{
+	padding: 5px 0 5px 0;
+}
+.comment-body:hover {
+	background: #fafafa url('./images/bg2.png') repeat;
+}
+.text .avatar{
+	width: 31px;
+	height: 31px;
+	cursor: pointer;
+}
+.avatar{
+	width: 40px;
+	height: 40px;
+	position: relative;
+	float: left;
+	margin: 4px 6px 0 0;
+	padding: 2px;
+	border: 1px solid #ddd;
+	background: #fff;
+}
+.commentlist .floor{
+	float: right;
+	color: #bbb;
+}
+.commentlist p{
+	margin: 5px 0 5px 50px;
+	line-height: 22px;
+}
+.clear{ clear: both;}
+.time{
+	font-size: 13px;
+	color: #aaa;
+	text-shadow: 0px 1px 0px #fff;
+	margin-left: 50px;
+}
